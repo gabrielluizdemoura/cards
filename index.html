@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meus Flashcards</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #dbeafe, #ede9fe);
+      min-height: 100vh;
+      color: #1e293b;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      color: #4f46e5;
+      margin-bottom: 12px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      padding: 20px;
+    }
+
+    .card {
+      width: 280px;
+      height: 360px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: transform 0.7s;
+      transform-style: preserve-3d;
+    }
+
+    .card.virado .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+      box-shadow: 0 8px 20px #00000020;
+      backface-visibility: hidden;
+    }
+
+    .card-front {
+      background: white;
+    }
+
+    .card-front img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .card-front h2,
+    .card-back h2 {
+      font-size: 22px;
+    }
+
+    .card-front p {
+      color: #64748b;
+    }
+
+    .card-back {
+      background: #4f46e5;
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+    .card:focus-visible {
+      outline: 3px solid #4338ca;
+      outline-offset: 5px;
+      border-radius: 18px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        gap: 20px;
+      }
+
+      .card {
+        width: min(100%, 320px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>📚 Meus Flashcards</h1>
+    <p>Clique nos cartões para descobrir as respostas!</p>
+  </header>
+
+  <main class="container">
+
+    <!-- CARTÃO 1 -->
+    <div class="card" tabindex="0" role="button"
+         aria-pressed="false">
+      <div class="card-inner">
+
+        <div class="card-front">
+          <img
+            src="https://placehold.co/300x180/4f46e5/ffffff?text=HTML"
+            alt="Imagem sobre HTML">
+          <h2>O que é HTML?</h2>
+          <p>Clique para virar!</p>
+        </div>
+
+        <div class="card-back">
+          <h2>Resposta</h2>
+          <p>HTML é a linguagem usada para estruturar o conteúdo das páginas web.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CARTÃO 2 -->
+    <div class="card" tabindex="0" role="button"
+         aria-pressed="false">
+      <div class="card-inner">
+
+        <div class="card-front">
+          <img
+            src="https://placehold.co/300x180/0891b2/ffffff?text=CSS"
+            alt="Imagem sobre CSS">
+          <h2>Para que serve o CSS?</h2>
+          <p>Clique para virar!</p>
+        </div>
+
+        <div class="card-back">
+          <h2>Resposta</h2>
+          <p>CSS é usado para personalizar o visual das páginas, com cores, tamanhos e animações.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CARTÃO 3 -->
+    <div class="card" tabindex="0" role="button"
+         aria-pressed="false">
+      <div class="card-inner">
+
+        <div class="card-front">
+          <img
+            src="https://placehold.co/300x180/f59e0b/ffffff?text=JavaScript"
+            alt="Imagem sobre JavaScript">
+          <h2>O que é JavaScript?</h2>
+          <p>Clique para virar!</p>
+        </div>
+
+        <div class="card-back">
+          <h2>Resposta</h2>
+          <p>JavaScript permite adicionar interatividade e ações às páginas web.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+   
+  </footer>
+
+  <script>
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach((card) => {
+      function virarCard() {
+        const virou = card.classList.toggle("virado");
+        card.setAttribute("aria-pressed", String(virou));
+      }
+
+      card.addEventListener("click", virarCard);
+
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          virarCard();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
